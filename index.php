@@ -67,7 +67,8 @@ $layout = include_template('layout.php',
         'title' => $title,
         'main' => $page_content,
         'is_auth' => $is_auth,
-        'user_name' => $user_name
+        'user_name' => $user_name,
+        'categories' => $categories
     ]
 );
 print($layout);
