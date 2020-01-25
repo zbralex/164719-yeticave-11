@@ -16,7 +16,10 @@ CREATE TABLE users (
                        email VARCHAR(128) NOT NULL UNIQUE,
                        name VARCHAR(128) NOT NULL,
                        password VARCHAR(128) NOT NULL UNIQUE,
-                       contact VARCHAR(128)
+                       contact VARCHAR(128),
+                       -- связи
+                       lot_id INT,
+                       bet_id INT
 );
 
 CREATE TABLE lots (
@@ -28,6 +31,7 @@ CREATE TABLE lots (
                       start_price INT NOT NULL,
                       end_date DATETIME NOT NULL,
                       step INT NOT NULL,
+                      -- связи
                       author_id INT NOT NULL,
                       winner_id INT,
                       category_id INT NOT NULL,
@@ -37,10 +41,10 @@ CREATE TABLE lots (
 CREATE TABLE bets (
                       id INT AUTO_INCREMENT PRIMARY KEY UNIQUE,
                       date DATETIME DEFAULT CURRENT_TIMESTAMP,
-                      price INT NOT NULL,
+                      sum INT,
+                      -- связи
                       user_id INT NOT NULL,
-                      lot_id INT,
-                      sum INT
+                      lot_id INT
 );
 
 
