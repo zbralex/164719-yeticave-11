@@ -13,3 +13,10 @@ VALUES
 (CURDATE(), 'Ботинки для сноуборда DC Mutiny Charocal', 'description dccc', 'img/lot-4.jpg', 10999, '2020-01-27', 100, 2, 1, 3),
 (CURDATE(), 'Куртка для сноуборда DC Mutiny Charocal', 'description dfasd', 'img/lot-5.jpg', 7500, '2020-01-28', 100, 1, 3, 4),
 (CURDATE(), 'Маска Oakley Canopy', 'description dsvs', 'img/lot-6.jpg', 5400, '2020-01-29', 100, 1, 2, 6);
+
+INSERT INTO yeticave.bets (date, sum, user_id, lot_id)
+VALUES
+(CURDATE(), 300, 1, 1),
+(CURDATE(), 400, 3, 2),
+(CURDATE(), 600, 2, 3),
+(CURDATE(), 200, 2, 4);

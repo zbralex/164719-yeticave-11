@@ -63,7 +63,8 @@ function format_price($price)
 }
 
 
-function get_dt_range($date) {
+function get_dt_range($date)
+{
     $current_date = date_create("now");
     $date = date_create($date);
     $remaining_time_arr = [];
