@@ -1,9 +1,11 @@
 <?php
 require_once('helpers.php');
+//require_once('init.php');
+$con = mysqli_connect("localhost", "newuser", "!MyNewPass1", "yeticave");
 $is_auth = rand(0, 1);
 $title = "Главная";
 $user_name = 'Александр';
-$categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
+$categories = [];
 $goods = [
     [
         'name' => '2014 Rossignol District Snowboard',
@@ -89,7 +91,12 @@ function get_dt_range($date)
 
     return $remaining_time_arr;
 }
-
+if ($con) {
+    $sql_categories = 'SELECT * FROM categories';
+    $result_categories = mysqli_query($con, $sql_categories);
+    $categories = mysqli_fetch_all($result_categories, MYSQLI_ASSOC);
+    var_dump($categories);
+}
 
 $page_content = include_template('main.php',
     [
