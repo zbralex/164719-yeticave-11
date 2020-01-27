@@ -57,7 +57,7 @@ if ($con) {
     $sql_lots = 'SELECT *, l.name AS lot_name
                 FROM yeticave.lots l
                 JOIN yeticave.categories c ON c.id = l.category_id
-                WHERE l.end_date >= CURDATE()';
+                WHERE l.end_date >= CURDATE() ORDER BY l.end_date ASC';
     $result_lots = mysqli_query($con, $sql_lots);
     $lots = mysqli_fetch_all($result_lots, MYSQLI_ASSOC);
 }
