@@ -44,14 +44,14 @@ function get_category_detail(object $connection, string $categoryUrl): array {
 
 function format_price(int $price): string
 {
-    $ruble = '₽';
+
 
     if ($price < 1000) {
-        return $price . $ruble;
+        return $price;
     }
 
     if ($price >= 1000) {
-        return number_format($price, 0, '', ' ') . $ruble;
+        return number_format($price, 0, '', ' ');
     }
 }
 
