@@ -2,10 +2,10 @@
 
 function get_lot_detail(object $connection, string $lotId)
 {
-    $sql_lot = 'SELECT *, l.name AS lot_name
+    $sql_lot = 'SELECT l.img, l.category_id, l.end_date, l.description, l.name AS lot_name, c.name
                         FROM yeticave.lots l
                         JOIN yeticave.categories c ON c.id = l.category_id
-                        WHERE l.id = ' .$lotId;
+                        WHERE l.id = ' . $lotId;
 
 
     $result_lot = mysqli_query($connection, $sql_lot);

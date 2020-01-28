@@ -12,7 +12,24 @@ if(isset($_GET['pages'])) {
         $lots = get_all_lots($con);
         $categories = get_categories($con);
         $lot_detail = get_lot_detail($con, $page_id);
+
+        if(empty($lot_detail)) {
+            header('HTTP/1.0 404 Not Found');
+            $page_content = include_template('error_404.php', []);
+            $layout = include_template('layout.php',
+                [
+                    'title' => '404 ошибка',
+                    'main' => $page_content,
+                    'is_auth' => true,
+                    'user_name' => 'user',
+                    'categories' => $categories,
+                ]
+            );
+            print($layout);
+            die();
+        }
     }
+
     $page_content = include_template('lot_template.php',
         [
             'categories' => $categories,
@@ -22,7 +39,7 @@ if(isset($_GET['pages'])) {
     );
     $layout = include_template('layout.php',
         [
-            'title' => '',
+            'title' => $lot_detail[0]['lot_name'],
             'main' => $page_content,
             'is_auth' => true,
             'user_name' => 'user',
