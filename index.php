@@ -12,6 +12,7 @@ $user_name = 'Александр';
 $categories = [];
 $lots = [];
 $params = $_GET;
+$mainPage = true;
 
 if ($con) {
     $categories = get_categories($con);
@@ -30,7 +31,8 @@ $layout = include_template('layout.php',
         'main' => $page_content,
         'is_auth' => $is_auth,
         'user_name' => $user_name,
-        'categories' => $categories
+        'categories' => $categories,
+        'mainPage' => $mainPage
     ]
 );
 print($layout);

@@ -45,7 +45,7 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="<?php if(isset($mainPage)){echo('container');} ?>">
         <?= $main;?>
     </main>
 </div>
@@ -53,7 +53,6 @@
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            <!--заполните этот список из массива категорий-->
             <?php foreach($categories as $key => $value):?>
                 <li class="nav__item">
                     <a href="pages/all-lots.html"><?= $value['name']; ?></a>
