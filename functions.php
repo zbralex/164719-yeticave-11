@@ -38,7 +38,6 @@ function get_category_detail(object $connection, string $categoryUrl): array {
                                    ." '" . $categoryUrl ."' "
                                   . " ORDER BY l.end_date ASC";
     $result_category_detail = mysqli_query($connection, $sql_category_detail);
-    print ($sql_category_detail);
     return mysqli_fetch_all($result_category_detail, MYSQLI_ASSOC);
 }
 
