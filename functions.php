@@ -35,7 +35,7 @@ function get_category_detail(object $connection, string $categoryUrl): array {
                             FROM yeticave.lots l
                             JOIN yeticave.categories c ON l.category_id = c.id 
                             WHERE l.end_date >= CURDATE() AND c.symbol_code = "
-                                   ." ' " . $categoryUrl ." ' "
+                                   ." '" . $categoryUrl ."' "
                                   . " ORDER BY l.end_date ASC";
     $result_category_detail = mysqli_query($connection, $sql_category_detail);
     print ($sql_category_detail);

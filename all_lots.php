@@ -14,7 +14,7 @@ if (isset($_GET['category'])) {
 
         $page_content = include_template('all_lots_template.php', [
             'categories' => $categories,
-            'lots' => $lots
+            'category_detail' => $category_detail
         ]);
 
         $layout = include_template('layout.php', [
