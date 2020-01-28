@@ -5,7 +5,9 @@
     <ul class="promo__list">
         <?php foreach( $categories as $cat):?>
             <li class="promo__item promo__item--<?= $cat['symbol_code'];?>">
-                <a class="promo__link" href="pages/all-lots.html"><?= $cat['name'];?></a>
+                <a class="promo__link" href="index.php?<?= http_build_query([
+                    'category' => $cat['symbol_code']
+                ])?>"><?= $cat['name'];?></a>
             </li>
         <?php endforeach; ?>
     </ul>

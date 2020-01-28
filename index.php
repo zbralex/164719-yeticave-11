@@ -4,6 +4,7 @@ require_once ('functions.php');
 require_once('init.php');
 
 require ('lot.php');
+require ('all_lots.php');
 
 $is_auth = rand(0, 1);
 $title = "Главная";
@@ -33,4 +34,5 @@ $layout = include_template('layout.php',
     ]
 );
 print($layout);
+
 

@@ -30,6 +30,18 @@ function get_categories(object $connection): array
     return mysqli_fetch_all($result_categories, MYSQLI_ASSOC);
 }
 
+function get_category_detail(object $connection, string $categoryUrl): array {
+    $sql_category_detail = "SELECT *, l.name AS lot_name, l.id AS lot_id
+                            FROM yeticave.lots l
+                            JOIN yeticave.categories c ON l.category_id = c.id 
+                            WHERE l.end_date >= CURDATE() AND c.symbol_code = "
+                                   ." ' " . $categoryUrl ." ' "
+                                  . " ORDER BY l.end_date ASC";
+    $result_category_detail = mysqli_query($connection, $sql_category_detail);
+    print ($sql_category_detail);
+    return mysqli_fetch_all($result_category_detail, MYSQLI_ASSOC);
+}
+
 function format_price(int $price): string
 {
     $ruble = '₽';

@@ -1,7 +1,5 @@
 <?php
-require_once ('init.php');
-require_once ('functions.php');
-require_once ('helpers.php');
+
 
 $lots = [];
 if(isset($_GET['pages'])) {
