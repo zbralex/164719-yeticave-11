@@ -38,7 +38,7 @@ if (isset($_GET['category'])) {
         ]);
 
         $layout = include_template('layout.php', [
-            'title' => !empty($category_detail[0]['name']),
+            'title' => !empty($category_detail[0]['name']) ? $category_detail[0]['name'] : '',
             'main' => $page_content,
             'is_auth' => true,
             'user_name' => 'user',
