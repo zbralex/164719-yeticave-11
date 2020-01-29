@@ -2,7 +2,7 @@
 
 $lots = [];
 $mainPage = true;
-urldecode($_GET['category']);
+
 if (isset($_GET['category'])) {
 
     $categoryUrl = mysqli_real_escape_string($con, $_GET['category']);
