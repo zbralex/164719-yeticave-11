@@ -22,7 +22,14 @@
 </nav>
 <div class="container">
     <section class="lots">
-        <h2>Все лоты в категории <span>«<?= $category_detail[0]['name']; ?>»</span></h2>
+        <?php
+        if(!empty($category_detail[0]['name'])) {
+            print( '<h2>Все лоты в категории <span>«' . $category_detail[0]['name'] . '»</span></h2>');
+        } else {
+            print( '<h2>Ничего не найдено</h2>');
+        }
+        ?>
+
         <ul class="lots__list">
 
 
@@ -61,12 +68,5 @@
             <?php endforeach; ?>
         </ul>
     </section>
-    <ul class="pagination-list">
-        <li class="pagination-item pagination-item-prev"><a>Назад</a></li>
-        <li class="pagination-item pagination-item-active"><a>1</a></li>
-        <li class="pagination-item"><a href="#">2</a></li>
-        <li class="pagination-item"><a href="#">3</a></li>
-        <li class="pagination-item"><a href="#">4</a></li>
-        <li class="pagination-item pagination-item-next"><a href="#">Вперед</a></li>
-    </ul>
+<?= $pagination;?>
 </div>

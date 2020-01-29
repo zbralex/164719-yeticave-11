@@ -2,6 +2,8 @@
 
 
 $lots = [];
+$lot_name = '';
+$mainPage = true;
 if(isset($_GET['pages'])) {
     $params['pages'] = filter_input(INPUT_GET, 'pages', FILTER_DEFAULT);
     $page_id = mysqli_real_escape_string($con, $_GET['pages']);
@@ -17,6 +19,7 @@ if(isset($_GET['pages'])) {
             $layout = include_template('layout.php',
                 [
                     'title' => '404 ошибка',
+                    'mainPage' => $mainPage,
                     'main' => $page_content,
                     'is_auth' => true,
                     'user_name' => 'user',
@@ -26,6 +29,7 @@ if(isset($_GET['pages'])) {
             print($layout);
             die();
         }
+
     }
 
     $page_content = include_template('lot_template.php',
