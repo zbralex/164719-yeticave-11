@@ -1,22 +1,22 @@
 
 <section class="lot-item container">
-    <h2><?=  $lot_detail[0]['lot_name'];?></h2>
+    <h2><?=  $lotDetail[0]['lot_name'];?></h2>
     <div class="lot-item__content">
         <div class="lot-item__left">
             <div class="lot-item__image">
-                <img src="../<?=  $lot_detail[0]['img'];?>" width="730" height="548" alt="<?=  $lot_detail[0]['lot_name'];?>">
+                <img src="../<?=  $lotDetail[0]['img'];?>" width="730" height="548" alt="<?=  $lotDetail[0]['lot_name'];?>">
             </div>
-            <p class="lot-item__category">Категория: <span><?=  $lot_detail[0]['name'];?></span></p>
-            <p class="lot-item__description"><?=  $lot_detail[0]['description'];?> <?= $lot_detail[0]['end_date']?></p>
+            <p class="lot-item__category">Категория: <span><?=  $lotDetail[0]['name'];?></span></p>
+            <p class="lot-item__description"><?=  $lotDetail[0]['description'];?> <?= $lotDetail[0]['end_date']?></p>
         </div>
 
         <div class="lot-item__right">
             <div class="lot-item__state">
                 <div class="lot-item__timer timer <?php
 
-                if (isset($lot_detail[0]['end_date'])) {
-                    $hours = get_dt_range($lot_detail[0]['end_date'])['hours'];
-                    $minutes = get_dt_range($lot_detail[0]['end_date'])['minutes'];
+                if (isset($lotDetail[0]['end_date'])) {
+                    $hours = get_dt_range($lotDetail[0]['end_date'])['hours'];
+                    $minutes = get_dt_range($lotDetail[0]['end_date'])['minutes'];
 
                     if ($hours === 0) {
                         echo 'timer--finishing';

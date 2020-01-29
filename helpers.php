@@ -79,10 +79,10 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
  * Ограничения: только для целых чисел
  *
  * Пример использования:
- * $remaining_minutes = 5;
- * echo "Я поставил таймер на {$remaining_minutes} " .
+ * $remainingMinutes = 5;
+ * echo "Я поставил таймер на {$remainingMinutes} " .
  *     get_noun_plural_form(
- *         $remaining_minutes,
+ *         $remainingMinutes,
  *         'минута',
  *         'минуты',
  *         'минут'

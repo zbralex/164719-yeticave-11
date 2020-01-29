@@ -2,43 +2,43 @@
 
 function get_lot_detail(object $connection, string $lotId)
 {
-    $sql_lot = 'SELECT l.img, l.category_id, l.end_date, l.description, l.name AS lot_name, c.name
+    $sqlLot = 'SELECT l.img, l.category_id, l.end_date, l.description, l.name AS lot_name, c.name
                         FROM yeticave.lots l
                         JOIN yeticave.categories c ON c.id = l.category_id
                         WHERE l.id = ' . $lotId;
 
 
-    $result_lot = mysqli_query($connection, $sql_lot);
-    return mysqli_fetch_all($result_lot, MYSQLI_ASSOC);
+    $resultLot = mysqli_query($connection, $sqlLot);
+    return mysqli_fetch_all($resultLot, MYSQLI_ASSOC);
 }
 
 
 function get_all_lots(object $connection): array
 {
-    $sql_lots = 'SELECT *, l.name AS lot_name, l.id AS lot_id
+    $sqlLots = 'SELECT *, l.name AS lot_name, l.id AS lot_id
                         FROM yeticave.lots l
                         JOIN yeticave.categories c ON l.category_id = c.id 
                         WHERE l.end_date >= CURDATE() ORDER BY l.end_date ASC';
-    $result_lots = mysqli_query($connection, $sql_lots);
-    return mysqli_fetch_all($result_lots, MYSQLI_ASSOC);
+    $resultLots = mysqli_query($connection, $sqlLots);
+    return mysqli_fetch_all($resultLots, MYSQLI_ASSOC);
 }
 
 function get_categories(object $connection): array
 {
-    $sql_categories = 'SELECT * FROM categories';
-    $result_categories = mysqli_query($connection, $sql_categories);
-    return mysqli_fetch_all($result_categories, MYSQLI_ASSOC);
+    $sqlCategories = 'SELECT * FROM categories';
+    $resultCategories = mysqli_query($connection, $sqlCategories);
+    return mysqli_fetch_all($resultCategories, MYSQLI_ASSOC);
 }
 
 function get_category_detail(object $connection, string $categoryUrl): array {
-    $sql_category_detail = "SELECT *, l.name AS lot_name, l.id AS lot_id
+    $sqlCategoryDetail = "SELECT *, l.name AS lot_name, l.id AS lot_id
                             FROM yeticave.lots l
                             JOIN yeticave.categories c ON l.category_id = c.id 
                             WHERE l.end_date >= CURDATE() AND c.symbol_code = "
                                    ." '" . $categoryUrl ."' "
                                   . " ORDER BY l.end_date ASC";
-    $result_category_detail = mysqli_query($connection, $sql_category_detail);
-    return mysqli_fetch_all($result_category_detail, MYSQLI_ASSOC);
+    $resultCategoryDetail = mysqli_query($connection, $sqlCategoryDetail);
+    return mysqli_fetch_all($resultCategoryDetail, MYSQLI_ASSOC);
 }
 
 function format_price(int $price): string
@@ -57,27 +57,27 @@ function format_price(int $price): string
 
 function get_dt_range($date)
 {
-    $current_date = date_create("now");
+    $currentDate = date_create("now");
     $date = date_create($date);
-    $remaining_time_arr = [];
-    if ($current_date < $date) {
-        $remaining_time = date_diff($date, $current_date);
-        $remaining_days = date_interval_format($remaining_time, '%a');
-        $remaining_hours = date_interval_format($remaining_time, '%h');
-        $remaining_minutes = date_interval_format($remaining_time, '%i');
-        $remaining_total_hours = $remaining_days * HOURS_PER_DAY + $remaining_hours;
-        $remaining_time_arr = [
-            'hours' => $remaining_total_hours,
-            'minutes' => $remaining_minutes,
+    $remainingTimeArr = [];
+    if ($currentDate < $date) {
+        $remainingTime = date_diff($date, $currentDate);
+        $remainingDays = date_interval_format($remainingTime, '%a');
+        $remainingHours = date_interval_format($remainingTime, '%h');
+        $remainingMinutes = date_interval_format($remainingTime, '%i');
+        $remainingTotalHours = $remainingDays * HOURS_PER_DAY + $remainingHours;
+        $remainingTimeArr = [
+            'hours' => $remainingTotalHours,
+            'minutes' => $remainingMinutes,
             'status' => true,
         ];
     } else {
-        $remaining_time_arr = [
+        $remainingTimeArr = [
             'hours' => 0,
             'minutes' => 0,
             'status' => false,
         ];
     }
 
-    return $remaining_time_arr;
+    return $remainingTimeArr;
 }
