@@ -1,32 +1,21 @@
 <nav class="nav">
     <ul class="nav__list container">
-        <li class="nav__item nav__item--current">
-            <a href="all-lots.html">Доски и лыжи</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Крепления</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Ботинки</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Одежда</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Инструменты</a>
-        </li>
-        <li class="nav__item">
-            <a href="all-lots.html">Разное</a>
-        </li>
+        <?php foreach ($categories as $cat) : ?>
+            <li class="nav__item">
+                <a href="index.php?<?= http_build_query([
+                    'category' => $cat['symbol_code']
+                ]) ?>"><?= isset($cat['name']) ? $cat['name'] : '' ?></a>
+            </li>
+        <?php endforeach; ?>
     </ul>
 </nav>
 <div class="container">
     <section class="lots">
         <?php
-        if(!empty($categoryDetail[0]['name'])) {
-            print( '<h2>Все лоты в категории <span>«' . $categoryDetail[0]['name'] . '»</span></h2>');
+        if (!empty($categoryDetail[0]['name'])) {
+            print('<h2>Все лоты в категории <span>«' . $categoryDetail[0]['name'] . '»</span></h2>');
         } else {
-            print( '<h2>Ничего не найдено</h2>');
+            print('<h2>Ничего не найдено</h2>');
         }
         ?>
 
@@ -43,7 +32,7 @@
                         <span class="lot__category"><?= $detailItem['name'] ?></span>
                         <h3 class="lot__title"><a class="text-link" href="/index.php?<?= http_build_query([
                                 'pages' => $detailItem['lot_id']
-                            ])?>"><?= $detailItem['lot_name'] ?></a>
+                            ]) ?>"><?= $detailItem['lot_name'] ?></a>
                         </h3>
                         <div class="lot__state">
                             <div class="lot__rate">
@@ -70,5 +59,5 @@
             <?php endforeach; ?>
         </ul>
     </section>
-<?= $pagination;?>
+    <?= $pagination; ?>
 </div>
