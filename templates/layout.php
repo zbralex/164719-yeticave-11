@@ -56,7 +56,9 @@
     <nav class="nav">
         <ul class="nav__list container">
             <?php foreach ($categories as $key => $value): ?>
-                <li class="nav__item">
+                <li class="nav__item <?php if($_GET['category'] === $value['symbol_code']) {
+                    print('nav__item--current');
+                }?>">
                     <a href="index.php?<?= http_build_query([
                         'category' => $value['symbol_code']
                     ]) ?>"><?= isset($value['name']) ? $value['name'] : '' ?></a>
