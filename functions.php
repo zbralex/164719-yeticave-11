@@ -2,11 +2,13 @@
 
 function get_lot_detail(object $connection, string $lotId)
 {
+    $whereLotID = ' WHERE l.id = ' . $lotId;
+    if (empty($lotId)) {
+        $whereLotID = '';
+    }
     $sqlLot = 'SELECT l.img, l.category_id, l.end_date, l.description, l.name AS lot_name, c.name
                         FROM yeticave.lots l
-                        JOIN yeticave.categories c ON c.id = l.category_id
-                        WHERE l.id = ' . $lotId;
-
+                        JOIN yeticave.categories c ON c.id = l.category_id ' . $whereLotID;
 
     $resultLot = mysqli_query($connection, $sqlLot);
     return mysqli_fetch_all($resultLot, MYSQLI_ASSOC);
@@ -30,13 +32,14 @@ function get_categories(object $connection): array
     return mysqli_fetch_all($resultCategories, MYSQLI_ASSOC);
 }
 
-function get_category_detail(object $connection, string $categoryUrl): array {
+function get_category_detail(object $connection, string $categoryUrl): array
+{
     $sqlCategoryDetail = "SELECT *, l.name AS lot_name, l.id AS lot_id
                             FROM yeticave.lots l
                             JOIN yeticave.categories c ON l.category_id = c.id 
                             WHERE l.end_date >= CURDATE() AND c.symbol_code = "
-                                   ." '" . $categoryUrl ."' "
-                                  . " ORDER BY l.end_date ASC";
+        . " '" . $categoryUrl . "' "
+        . " ORDER BY l.end_date ASC";
     $resultCategoryDetail = mysqli_query($connection, $sqlCategoryDetail);
     return mysqli_fetch_all($resultCategoryDetail, MYSQLI_ASSOC);
 }

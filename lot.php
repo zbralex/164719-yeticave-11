@@ -37,7 +37,7 @@ if(isset($_GET['pages'])) {
         [
             'categories' => $categories,
             'lots' => $lots,
-            'lot_detail' => $lotDetail
+            'lotDetail' => $lotDetail
         ]
     );
     $layout = include_template('layout.php',
