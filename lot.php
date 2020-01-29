@@ -12,7 +12,8 @@ if(isset($_GET['pages'])) {
         $categories = get_categories($con);
         $lotDetail = get_lot_detail($con, $pageId);
 
-        if(empty($lotDetail)) {
+
+        if(empty($pageId) or empty($lotDetail)) {
             header('HTTP/1.0 404 Not Found');
             $pageContent = include_template('error_404.php', [
 
