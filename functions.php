@@ -82,4 +82,19 @@ function format_price(int $price): string
 //
 //    return $remainingTimeArr;
 //}
+function get_dt_range($date)
+{
+    $check_time = strtotime($date) - time();
 
+    if ($check_time <= 0) {
+        return false;
+    }
+
+    $days = floor($check_time / 86400);
+
+    $hours = floor(($check_time % 86400) / 3600);
+
+    $minutes = floor(($check_time % 3600) / 60);
+
+    $seconds = $check_time % 60;
+}
