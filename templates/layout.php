@@ -55,13 +55,13 @@
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            <?php foreach ($categories as $key => $value): ?>
-                <li class="nav__item <?php if($_GET['category'] === $value['symbol_code']) {
+            <?php foreach ($categories as $cat): ?>
+                <li class="nav__item <?php if($_GET['category'] === $cat['symbol_code']) {
                     print('nav__item--current');
                 }?>">
                     <a href="index.php?<?= http_build_query([
-                        'category' => $value['symbol_code']
-                    ]) ?>"><?= isset($value['name']) ? $value['name'] : '' ?></a>
+                        'category' => $cat['symbol_code']
+                    ]) ?>"><?= isset($cat['name']) ? $cat['name'] : '' ?></a>
                 </li>
             <?php endforeach; ?>
         </ul>

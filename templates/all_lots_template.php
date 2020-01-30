@@ -33,6 +33,7 @@
                     <div class="lot__info">
                         <span class="lot__category"><?= $detailItem['name'] ?></span>
                         <h3 class="lot__title"><a class="text-link" href="/index.php?<?= http_build_query([
+                                'category' => $detailItem['symbol_code'],
                                 'pages' => $detailItem['lot_id']
                             ]) ?>"><?= $detailItem['lot_name'] ?></a>
                         </h3>
