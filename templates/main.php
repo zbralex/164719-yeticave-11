@@ -7,7 +7,7 @@
             <li class="promo__item promo__item--<?= $cat['symbol_code'];?>">
                 <a class="promo__link" href="index.php?<?= http_build_query([
                     'category' => $cat['symbol_code']
-                ])?>"><?= $cat['name'];?></a>
+                ]) ?>"><?= $cat['name'];?></a>
             </li>
         <?php endforeach; ?>
     </ul>

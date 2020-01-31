@@ -3,25 +3,24 @@
 $lots = [];
 $lot_name = '';
 $mainPage = true;
-if(isset($_GET['pages'])) {
+if (isset($_GET['pages'])) {
     $params['pages'] = filter_input(INPUT_GET, 'pages', FILTER_DEFAULT);
     $pageId = mysqli_real_escape_string($con, $_GET['pages']);
 
-    if($con) {
+    if ($con) {
         $lots = get_all_lots($con);
         $categories = get_categories($con);
         $lotDetail = get_lot_detail($con, $pageId);
 
 
-        if(empty($pageId) or empty($lotDetail)) {
+        if (empty($pageId) or empty($lotDetail)) {
             header('HTTP/1.0 404 Not Found');
             $pageContent = include_template('error_404.php', [
-
+                'categories' => $categories
             ]);
             $layout = include_template('layout.php',
                 [
                     'title' => '404 ошибка',
-                    'mainPage' => $mainPage,
                     'main' => $pageContent,
                     'isAuth' => true,
                     'userName' => 'user',

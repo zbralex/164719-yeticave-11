@@ -46,8 +46,6 @@ function get_category_detail(object $connection, string $categoryUrl): array
 
 function format_price(int $price): string
 {
-
-
     if ($price < 1000) {
         return $price;
     }
@@ -57,30 +55,46 @@ function format_price(int $price): string
     }
 }
 
-
+//
+//function get_dt_range($date)
+//{
+//    $currentDate = date_create("now");
+//    $date = date_create($date);
+//    $remainingTimeArr = [];
+//    if ($currentDate < $date) {
+//        $remainingTime = date_diff($date, $currentDate);
+//        $remainingDays = date_interval_format($remainingTime, '%a');
+//        $remainingHours = date_interval_format($remainingTime, '%h');
+//        $remainingMinutes = date_interval_format($remainingTime, '%i');
+//        $remainingTotalHours = $remainingDays * HOURS_PER_DAY + $remainingHours;
+//        $remainingTimeArr = [
+//            'hours' => $remainingTotalHours,
+//            'minutes' => $remainingMinutes,
+//            'status' => true,
+//        ];
+//    } else {
+//        $remainingTimeArr = [
+//            'hours' => 0,
+//            'minutes' => 0,
+//            'status' => false,
+//        ];
+//    }
+//
+//    return $remainingTimeArr;
+//}
 function get_dt_range($date)
 {
-    $currentDate = date_create("now");
-    $date = date_create($date);
-    $remainingTimeArr = [];
-    if ($currentDate < $date) {
-        $remainingTime = date_diff($date, $currentDate);
-        $remainingDays = date_interval_format($remainingTime, '%a');
-        $remainingHours = date_interval_format($remainingTime, '%h');
-        $remainingMinutes = date_interval_format($remainingTime, '%i');
-        $remainingTotalHours = $remainingDays * HOURS_PER_DAY + $remainingHours;
-        $remainingTimeArr = [
-            'hours' => $remainingTotalHours,
-            'minutes' => $remainingMinutes,
-            'status' => true,
-        ];
-    } else {
-        $remainingTimeArr = [
-            'hours' => 0,
-            'minutes' => 0,
-            'status' => false,
-        ];
+    $check_time = strtotime($date) - time();
+
+    if ($check_time <= 0) {
+        return false;
     }
 
-    return $remainingTimeArr;
+    $days = floor($check_time / 86400);
+
+    $hours = floor(($check_time % 86400) / 3600);
+
+    $minutes = floor(($check_time % 3600) / 60);
+
+    $seconds = $check_time % 60;
 }

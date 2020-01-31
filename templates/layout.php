@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title><?= $title;?></title>
+    <title><?= $title; ?></title>
     <link href="../css/normalize.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 </head>
@@ -22,7 +22,7 @@
             <a class="main-header__add-lot button" href="pages/add-lot.html">Добавить лот</a>
 
             <nav class="user-menu">
-                <!-- здесь должен быть PHP код для показа меню и данных пользователя -->
+
                 <?php if ($isAuth) {
                     print('<div class="user-menu__logged">
                                 <p> ' . $userName . ' </p>
@@ -45,19 +45,30 @@
         </div>
     </header>
 
-    <main class="<?php if(isset($mainPage)){echo('container');} ?>">
-        <?= $main;?>
+    <main class="<?php if (isset($mainPage)) {
+        echo('container');
+    } ?>">
+        <?= $main; ?>
     </main>
 </div>
 
 <footer class="main-footer">
     <nav class="nav">
         <ul class="nav__list container">
-            <?php foreach($categories as $key => $value):?>
-                <li class="nav__item">
-                    <a href="pages/all-lots.html"><?= $value['name']; ?></a>
+            <?php foreach ($categories as $cat): ?>
+                <li class="nav__item <?php
+                if (isset($_GET['category'])) {
+                    if ($_GET['category'] === $cat['symbol_code']) {
+                        print('nav__item--current');
+                    }
+                } ?>">
+                    <a href="index.php?<?= http_build_query(
+                        [
+                            'category' => $cat['symbol_code']
+                        ]
+                    ) ?>"><?= isset($cat['name']) ? $cat['name'] : '' ?></a>
                 </li>
-            <?php endforeach;?>
+            <?php endforeach; ?>
         </ul>
     </nav>
     <div class="main-footer__bottom container">

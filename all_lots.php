@@ -2,6 +2,7 @@
 
 $lots = [];
 $mainPage = true;
+
 if (isset($_GET['category'])) {
 
     $categoryUrl = mysqli_real_escape_string($con, $_GET['category']);
@@ -16,7 +17,7 @@ if (isset($_GET['category'])) {
             $layout = include_template('layout.php',
                 [
                     'title' => '404 ошибка',
-                    'mainPage' => $mainPage,
+                    'mainPage' => !$mainPage,
                     'main' => $pageContent,
                     'isAuth' => true,
                     'userName' => 'user',
@@ -33,7 +34,7 @@ if (isset($_GET['category'])) {
 
         $pageContent = include_template('all_lots_template.php', [
             'categories' => $categories,
-            'category_detail' => $categoryDetail,
+            'categoryDetail' => $categoryDetail,
             'pagination' => !empty($categoryDetail[0]['name']) ? $pagination : ''
         ]);
 

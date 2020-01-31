@@ -23,6 +23,7 @@
                     }
                 }
                 ?>">
+
                     <?= !empty($hours) ? $hours : 'hh' . ":" . !empty($minutes) ? $minutes : 'mm'; ?>
                 </div>
                 <div class="lot-item__cost-state">
